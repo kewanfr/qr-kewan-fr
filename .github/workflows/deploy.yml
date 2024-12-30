@@ -23,4 +23,9 @@ jobs:
           port: 21
           local-dir: './'
           server-dir: '/test/'
-          exclude: '.git,.src/js/base_url.js,postcss.config.js,tailwind.config.js'
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **.src/js/base_url.js
+            postcss.config.js
+            tailwind.config.js
