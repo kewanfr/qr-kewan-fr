@@ -19,6 +19,11 @@ if ($url == "" || $url == "index.php" || $url == "index") {
     class="justify-center items-center flex flex-col"
   >
 
+  <!-- retour à l'accueil -->
+  
+  <a href="/home<?= $url ?>" class="text-blue-500 font-bold">Retour à l'accueil</a>
+
+
   <h1 class="text-3xl font-bold text-center text-blue-600">
       Voici le QR Code de :
     </h1>
