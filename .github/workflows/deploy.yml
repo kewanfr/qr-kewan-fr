@@ -22,5 +22,5 @@ jobs:
           password: ${{ secrets.SSH_PASSWORD }}
           port: 21
           local-dir: './'
-          server-dir: '/test'
+          server-dir: '/test/'
           exclude: '.git,.src/js/base_url.js,postcss.config.js,tailwind.config.js'
