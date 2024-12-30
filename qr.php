@@ -16,31 +16,10 @@
   <main class="flex-grow container mx-auto px-4 py-8">
 
     <div class="bg-white shadow-md rounded-lg p-6">
-        <form  method="POST" class="space-y-6" 
-        onsubmit="event.preventDefault(); generateTextForQRCode();">
-
-        <!-- > -->
-
-          <!-- QR Type Selector -->
-<!--           
-          <div class="flex items-center" id="qrType">
-            <label for="qrType" class="block text-sm font-medium text-gray-700">Type de QRCode :</label>
-
-            <select id="qrType" name="qrType" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
-              <option value="url">URL</option>
-              <option value="text">Texte (texte, adresse mail, numero de téléphone, etc.)</option>
-              <option value="email">Email</option>
-              <option value="sms">SMS</option>
-              <option value="wifi">Wifi</option>
-              <option value="geo">Géolocalisation</option>
-              <option value="vcard">Carte de visite</option>
-            </select>
-          </div> -->
-
-
+        <form action="create_link" method="POST" class="space-y-6">
             <div>
-                <label for="original_url" class="block text-sm font-medium text-gray-700">Texte ou URL du QRCode :</label>
-                <input type="text" id="content" name="content" placeholder="https://exemple.com ou texte"
+                <label for="original_url" class="block text-sm font-medium text-gray-700">URL du QRCode :</label>
+                <input type="url" id="content" name="content" required placeholder="https://exemple.com"
                        class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500">
             </div>
 
@@ -70,17 +49,20 @@
                 <div id="qrcode" class="mt-6"></div>
             </div>
 
-            <!-- <div class="text-center">
-                <button type="submit" onclick="generateTextForQRCode"
+            <div class="text-center">
+                <button type="submit"
                         class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
-                    Génerer
+                    Raccourcir
                 </button>
-            </div> -->
+            </div>
         </form>
 
-          <div class="mt-6 p-4 bg-green-100 border border-green-400 text-green-700 rounded">
-              <p>URL du QRCode : <a id="qrcode_url" href="" class="text-blue-600 underline"></a></p>
-          </div>
+        <?php if (isset($_SESSION['short_url'])): ?>
+            <div class="mt-6 p-4 bg-green-100 border border-green-400 text-green-700 rounded">
+                <p>URL raccourcie : <a href="<?= htmlspecialchars($_SESSION['short_url']) ?>" class="text-blue-600 underline"><?= htmlspecialchars($_SESSION['short_url']) ?></a></p>
+            </div>
+            <?php unset($_SESSION['short_url']); ?>
+        <?php endif; ?>
     </div>
 
 </main>
