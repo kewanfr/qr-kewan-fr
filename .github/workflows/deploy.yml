@@ -11,12 +11,16 @@ jobs:
     container:
       image: node:20
     steps:
-      - uses: actions/checkout@v2
-      - name: Upload ftp
-        uses: genietim/ftp-action@releases/v4
+      - name: Get latest code
+        uses: actions/checkout@v3
+  
+      - name: Push files
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
-          host: ${{ secrets.SSH_HOST }}
-          user: ${{ secrets.SSH_USER }}
+          server: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
           password: ${{ secrets.SSH_PASSWORD }}
-          localDir: "./"
-          remoteDir: "test"
+          port: 21
+          local-dir: './'
+          server-dir: '/test'
+          exclude: '.git,.src/js/base_url.js,postcss.config.js,tailwind.config.js'
