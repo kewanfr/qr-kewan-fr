@@ -62,6 +62,6 @@ function generateQRCode(value = null) {
     height: size,
   });
 
-  qrcode_url.innerHTML = BASE_URL + value;
+  qrcode_url.innerHTML = BASE_URL.replace("https://", "") + value;
   qrcode_url.href = BASE_URL + value;
 }
