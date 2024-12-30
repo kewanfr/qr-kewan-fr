@@ -11,21 +11,12 @@ jobs:
     container:
       image: node:20
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: SFTP upload
-        uses: Dylan700/sftp-upload-action@latest
+      - uses: actions/checkout@v2
+      - name: Upload ftp
+        uses: genietim/ftp-action@releases/v4
         with:
-          server: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USER }}
+          host: ${{ secrets.SSH_HOST }}
+          user: ${{ secrets.SSH_USER }}
           password: ${{ secrets.SSH_PASSWORD }}
-          port: 21
-          uploads: |
-            ./ => ./test
-          ignore: |
-            *.git
-            */**/*git*
-            ./src/js/base_url.js
-            tailwind.config.js
-            postcss.config.js
-            package.json
+          localDir: "./"
+          remoteDir: "test"
