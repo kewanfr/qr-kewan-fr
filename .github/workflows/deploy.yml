@@ -22,7 +22,7 @@ jobs:
           password: ${{ secrets.SSH_PASSWORD }}
           port: 21
           local-dir: './'
-          server-dir: '/test/'
+          server-dir: '/qr.kewan.fr/'
           exclude: |
             **/.git*
             **/.git*/**
